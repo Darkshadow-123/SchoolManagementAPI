@@ -3,6 +3,20 @@ const schoolService = require('../services/schoolService');
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'School Management API',
+    endpoints: {
+      addSchool: 'POST /addSchool',
+      getSchools: 'GET /schools',
+      getSchoolById: 'GET /schools/:id',
+      updateSchool: 'PUT /schools/:id',
+      deleteSchool: 'DELETE /schools/:id'
+    }
+  });
+});
+
 router.post('/addSchool', async (req, res) => {
   try {
     const errors = schoolService.validateSchoolData(req.body);
